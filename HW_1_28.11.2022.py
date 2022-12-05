@@ -30,3 +30,12 @@ def Summ4etElements(list = testList):
     print(f"сумма четных элементов = {res}")
 
 Summ4etElements(CreateSpisok(n,testList))
+
+
+# def sum_of_even(nums: list[int]) -> int:
+#     """Возвращает сумму элементов на нечетных позициях"""
+#     return sum(nums[1::2])
+
+
+# a = [2, 3, 5, 9, 3]
+# print(sum_of_even(a))
