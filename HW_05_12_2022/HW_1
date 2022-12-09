@@ -1,0 +1,101 @@
+# 1. Создайте программу для игры с конфетами человек против человека.
+# *' Условие задачи: На столе лежит 117 конфета. 
+# Играют два игрока делая ход друг после друга. 
+# Первый ход определяется жеребьёвкой. 
+# За один ход можно забрать не более чем 28 конфет.
+# Все конфеты оппонента достаются сделавшему последний ход. 
+from time import sleep
+from random import randint
+from os import system 
+system("cls")
+
+print("ВВЕДИТЕ ЧИСЛО КОНФЭТ в КОРЗИНЕ: ")
+candy_case = int(input())
+
+
+def Modifikator():
+    modifikator = (randint(-5, 7))*(-1) 
+    if modifikator == 0:
+        modifikator -=1 
+    return modifikator
+
+def Who_First(modifikator,playerA,playerB):
+    if modifikator<0:
+        player = playerB
+    else:
+        player = playerA
+    return player
+
+def Bot_Or_Player_Take_Candy(player):
+    if player == "ЖЕЛЕЗЯКА":
+        taken_candys = randint(1, 28)
+    else:
+        print("ЗЛОВЕЩИЙ ШЕПОТ ИЗ-ЗА ЛЕВОГО ПЛЕЧА: псс!! Бери больше 28")
+        sleep(1)
+        taken_candys = int(input("ВОЗЬМИТЕ КОНФЕТЫ: "))
+    return int(taken_candys)
+
+def Turn(candy_case,taken_candys,player,modifikator,playerA,playerB):
+    while candy_case > 0:
+        player = Who_First(modifikator,playerA,playerB) 
+
+        p = input()
+        system("cls")
+
+        taken_candys = int(Bot_Or_Player_Take_Candy(player))
+
+        if taken_candys > 28:
+            print("АГА!!!) ВЫ ЖАДНЫЙ И ХИТРЫЙ ЧЕЛОВЕК")
+            sleep(1)
+            print("ВЫ ЖАДНЫЙ И ХИТРЫЙ ЧЕЛОВЕК")
+            sleep(1)
+            print("ХОТЯ НЕ ТАКОЙ УЖ И ХИТРЫЙ! Я ЖЕ ВАС РАСКУСИЛ.....")
+            sleep(1)
+            print("ЧТО ЖЕ МНЕ СДЕЛАТЬ С ТОБОЙ? МОЙ ЖАДНЫЙ ДРУГ???")
+            sleep(1)
+            print("В НАКАЗАНИЕ ТЫ НЕ ВОЗЬМЁШЬ НИ ОДНОЙ КОНФЕТЫ В ЭТОТ ХОД")
+            p = input()
+            taken_candys = 0
+
+        elif taken_candys >= candy_case:
+            taken_candys = candy_case
+            print("КАКОЙ НАКАЛ!!!")
+            p = input()
+            print("ТАКОГО ЕЩЁ НЕБЫЛО У НАС НА КАНАЛЕ ДРУЗЬЯ!!!")
+            sleep(1)
+            print(f"С НЕТЕРПЕНИЕЖ ЖДЁМ ХОДА ОТ ИГОРКА {player}")
+            p = input()
+            print(f"Игрок {player} берет оставшиеся {taken_candys} конфеты, и выигрывает!!!")
+            sleep(1)
+            print("И ВОТ ОНО!!!! ДА  ЭТО ПОБЕДА ДРУЗЬЯ!!")
+            candy_case = 0
+
+        else:
+            candy_case -= taken_candys
+            print(f"Игрок {player} берет {taken_candys} конфет, осталось {candy_case} конфет в корзине")
+            
+        modifikator *=(-1)
+        print(candy_case, "конфет осталось в корзине")
+
+   
+
+
+def Game(candy_case):
+    print("С КЕМ ВЫ ХОТИТЕ ИГРАТЬ?")
+    bot = (input(" БОТ ИЛИ ЧЕЛОВЕК: "))
+    playerB = "Берлускони"
+    if bot == "бот" or "bot":
+        playerB = "ЖЕЛЕЗЯКА"
+    taken_candys = 0
+    p = ""
+    playerA = "Аристарх"
+    player = ""
+    modifikator =  Modifikator()
+    Turn(candy_case,taken_candys,player,modifikator,playerA,playerB)
+    
+
+Game(candy_case)  
+
+
+
+
