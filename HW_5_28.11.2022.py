@@ -19,3 +19,6 @@ newList = list(reversed(testList1))
 for i in range(1,((n)+1)):
     newList.append(testList[i])
 print(newList)
+
+
+
