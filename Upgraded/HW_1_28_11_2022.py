@@ -6,7 +6,7 @@
 # - [2, 3, 5, 9, 3] -> на нечётных позициях элементы 3 и 9, ответ: 12
 
 from functools import reduce as r
-from os import system 
+
 from random import randint
 system("cls")
 
